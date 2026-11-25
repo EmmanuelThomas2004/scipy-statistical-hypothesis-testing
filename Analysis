@@ -1,0 +1,71 @@
+from scipy import stats
+spending = [1800, 2200, 1900, 2100, 2300, 1700, 2000, 2400]
+claimed_mean = 2000
+test1 = stats.ttest_1samp(spending,popmean= claimed_mean)
+print("One sample t test:",test1.statistic)
+print("P value of test1:",test1.pvalue)
+if  test1.pvalue < 0.05:
+    print("test1 null hypothesis rejected")
+else:
+    print("test1 null hypothesis not rejected")
+
+print( "*" * 10 ,"test2","*" * 10)
+male = [2200, 2500, 2800, 2100, 3000, 2700]
+female = [1800, 2000, 2300, 1900, 2100, 2200]
+test2  = stats.ttest_ind(male,female)
+print("Independent T-Test:",test2.statistic)
+print("P value of test2:",test2.pvalue)
+if test2.pvalue < 0.05:
+    print ("test2 null hypothesis rejected")
+else:
+    print ("test2 null hypothesis not rejected")
+
+print( "*" * 10 ,"test3","*" * 10)
+before = [45, 50, 42, 48, 55, 47, 52, 44]
+after = [52, 55, 46, 54, 60, 53, 58, 49]
+test3 = stats.ttest_rel(before,after)
+print("one paired t-test test stastic:",test3.statistic)
+print("P value of test3:",test3.pvalue)
+if test3.pvalue < 0.05:
+    print ("test3 null hypothesis rejected")
+else:
+    print ("test3 null hypothesis not rejected")
+
+print( "*" * 10 ,"test4","*" * 10)
+kochi = [1500, 1800, 1600, 1700, 1900]
+bengaluru = [2500, 2800, 2600, 3000, 2700]
+chennai = [2000, 2200, 2100, 2300, 2150]
+test4 = stats.f_oneway(kochi,bengaluru,chennai)
+print("Test4 Anova test stastics:",test4.statistic)
+print("test4 p value:",test4.pvalue)
+if test4.pvalue < 0.05:
+    print ("test4 null hypothesis rejected")
+else:
+    print ("test4 null hypothesis not rejected")
+
+print( "*" * 10 ,"test5","*" * 10)
+observed = [
+    [4, 6],
+    [5, 5]
+]
+chi2,p_value,dof,expected = stats.chi2_contingency(observed)
+print("Chi2 statistic:",chi2)
+print("dof:",dof)
+print("Expected observation:",expected)
+print("p-value:",p_value)
+if p_value < 0.05:
+ print ("test4 null hypothesis rejected")
+else:
+ print ("test4 null hypothesis not rejected")
+
+print( "*" * 10 ,"test6","*" * 10)
+payment_methods = ["Cash", "UPI", "Credit Card", "Debit Card"]
+observed = [40, 30, 20, 10]
+expected = [25, 25, 25, 25]
+chi2,p_value = stats.chisquare(observed,expected)
+print("Chi2 statistic:",chi2)
+print("p_value:",p_value)
+if p_value < 0.05:
+    print ("test6 null hypothesis rejected")
+else:
+    print ("test6 null hypothesis not rejected")
